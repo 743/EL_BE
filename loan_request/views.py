@@ -21,12 +21,12 @@ class LoanRequestView(View):
             response = {}
             for k, v in serializer.errors.items():
                 if k != 'non_field_errors' and isinstance(v, list):
-                    response[k] = v.__str__()
+                    response[k] = v[0].__str__()
 
                 if isinstance(v, dict):
                     inner_response = {}
                     for k1, v1 in v.items():
-                        inner_response[k1] = v1.__str__()
+                        inner_response[k1] = v1[0].__str__()
 
                     if k == 'non_field_errors':
                         for errorDetail in serializer.errors['non_field_errors']:
